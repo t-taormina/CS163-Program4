@@ -204,3 +204,10 @@ int Item::retrieve(Item& found_item)
 }
 
 
+int Item::compare(Item & arg_item)
+{
+  int check = strcmp(arg_item.name, name);
+  if (check >= 0)
+    return 1;
+  return 0;
+}

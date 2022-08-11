@@ -3,20 +3,32 @@
 // August 2022
 // Program 4
 
+#include "item.h"
+
 
 struct node 
 {
   Item item;
   node * left;
   node * right;
+  
+  node()
+  {
+    item = Item();
+    left = nullptr;
+    right = nullptr;
+  }
 };
 
-class tree
+
+class Tree
 {
   public: 
-    table();
-    ~table();
+    Tree();
+    ~Tree();
 
+
+    int compare(Item & item);
     int insert(Item & item);
     int display_sorted();
     int display_name_match(char * name_to_match);
@@ -30,7 +42,7 @@ class tree
     node * root;
 
     // Recursive functions
-    int insert(Item & item, node * root);
+    int insert(Item & item, node * & root);
     int display_sorted(node * root);
     int display_name_match(char * name_to_match, node * root);
     int display_type_match(char * type_to_match, node * root);

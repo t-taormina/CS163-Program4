@@ -3,26 +3,150 @@
 // August 2022
 // Program 4
 
-table();
-~table();
+#include "tree.h"
 
-int insert(Item & item);
-int display_sorted();
-int display_name_match(char * name_to_match);
-int display_type_match(char * type_to_match);
-int retrieve_match(char * name_to_match, Item & found);
-int remove(char * name_to_remove);
-int remove_all();
+// Default constuctor
+Tree::Tree(): root(nullptr){}
 
 
+// Deconstructor
+Tree::~Tree()
+{
+  remove_all();
+}
 
-// Recursive functions
-int insert(Item & item, node * root);
-int display_sorted(node * root);
-int display_name_match(char * name_to_match, node * root);
-int display_type_match(char * type_to_match, node * root);
-int retrieve_match(char * name_to_match, Item & found, node * root);
-int remove(char * name_to_remove, node * root);
-int remove_all(node * & root);
+
+// @Dev - wrapper function to insert a node into the tree. 
+// Args -> takes an Item object passed by reference. 
+// Returns -> integer success.
+int Tree::insert(Item & item)
+{
+  return insert(item, root);
+}
+
+
+// @Dev - recursive call to a node into the tree. 
+// Args -> takes an Item object passed by reference and private member root node as an argument. 
+// Returns -> integer success.
+int Tree::insert(Item & item, node * & root)
+{
+  if (!root)
+  {
+    root = new node;
+    root->item.copy_item(item);
+    return 1;
+  }
+
+  if (root->item.compare(item))
+  {
+    cout << "right node entered" << endl;
+    return insert(item, root->right);
+  }
+  else 
+  {
+    cout << "left node entered" << endl;
+    return insert(item, root->left);
+  }
+}
+
+
+// @Dev - wrapper function to display all nodes in sorted order. Calls recursive function. 
+// Args -> none 
+// Returns -> total number of items stored in the binary tree.
+int Tree::display_sorted()
+{
+  return display_sorted(root);
+}
+
+
+// @Dev - recursive call to display all nodes in sorted order. 
+// Args -> takes private member root node as an argument. 
+// Returns -> total number of items stored in the binary tree.
+int Tree::display_sorted(node * root)
+{
+  if (!root)
+    return 0;
+  
+  int count = 0;
+  count = display_sorted(root->left);
+  cout << "displaying node" << endl;
+  root->item.display();
+  count++;
+  count += display_sorted(root->right);
+  return count;
+}
+
+
+int Tree::display_name_match(char * name_to_match)
+{
+  return 0;
+}
+
+
+int Tree::display_type_match(char * type_to_match)
+{
+  return 0;
+}
+
+
+int Tree::retrieve_match(char * name_to_match, Item & found)
+{
+  return 0;
+}
+
+
+int Tree::remove(char * name_to_remove)
+{
+  return 0;
+}
+
+
+// @Dev - wrapper function to remove all nodes in the tree
+// Args -> none 
+// Returns -> number of nodes removed
+int Tree::remove_all()
+{
+  return remove_all(root);
+}
+
+
+// @Dev - recursive call to remove all nodes in tree 
+// Args -> takes private member root node as an argument 
+// Returns -> total number of items deleted from the binary tree
+int Tree::remove_all(node * & root)
+{
+  if (!root)
+    return 0;
+  int count = remove_all(root->left);
+  count += remove_all(root->right);
+  delete root;
+  root = nullptr;
+  count++;
+  return count;
+}
+
+
+int Tree::display_name_match(char * name_to_match, node * root)
+{
+  return 0;
+}
+
+
+int Tree::display_type_match(char * type_to_match, node * root)
+{
+  return 0;
+}
+
+
+int Tree::retrieve_match(char * name_to_match, Item & found, node * root)
+{
+  return 0;
+}
+
+
+int Tree::remove(char * name_to_remove, node * root)
+{
+  return 0;
+}
 
 

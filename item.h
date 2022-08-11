@@ -24,7 +24,6 @@ const char file_name[] = "data.txt";
 
 // Constant for the size of the hash table array used in the Table class. See "table.h"
 // and "table.cpp".
-const int HASH_SIZE = 50;
 
 
 class Item 
@@ -71,6 +70,7 @@ class Item
     // 1 for true, 0 for false.
     int is_match(char * name_to_match);
 
+    int compare(Item & arg_item);
   // ===============================================================================================
   private:
     char * name;

@@ -8,7 +8,7 @@
 
 // Program runner.
 int run() {
-  Table table(HASH_SIZE);// hash size variable is constant in item.h
+  Tree tree;
 
   int flag = 1;
   
@@ -16,7 +16,7 @@ int run() {
     {
       displayMenu();
       int menu_choice = validate_menu_choice();
-      processChoice(flag, menu_choice, table);
+      processChoice(flag, menu_choice, tree);
     }
   return 0;
 }
@@ -30,11 +30,11 @@ int displayMenu() {
 
     std::cout << "===============================\n";
     std::cout << "1) Read items from file\n";
-    std::cout << "2) Display all items in table \n";
-    std::cout << "3) Display match by name\n";
-    std::cout << "4) Display all match by type\n";
-    std::cout << "5) Remove by name\n";
-    std::cout << "6) Retrieve match by name\n";
+    std::cout << "2) Display sorted tree\n";
+    std::cout << "3) Remove all nodes\n";
+    std::cout << "4)\n";
+    std::cout << "5)\n";
+    std::cout << "6)\n";
     std::cout << "7) Add a collectable\n";
     std::cout << std::endl;
     std::cout << "0) Exit Program\n";
@@ -44,7 +44,7 @@ int displayMenu() {
 
 
 // Provides option processing for the menu 
-void processChoice (int& flag, int menu_choice, Table & table)
+void processChoice (int& flag, int menu_choice, Tree & tree)
 {
   // Takes in user input for menu choice and calls the appropriate function.
   int no = 0;
@@ -54,65 +54,41 @@ void processChoice (int& flag, int menu_choice, Table & table)
       // Read file into events and output.
       case 1:
         { 
-          table.read_file();
-          table.collisions();
-          table.items();
+          //table.read_file();
           break;
         }
 
       // Display full table. 
       case 2: 
         {
-          table.display_all();
+          int count = tree.display_sorted();
+          cout << "Number of nodes in list: " << count << endl;
           break;
         }
 
       // Display name matches.
       case 3:
         {
-          char * match = new char[SIZE];
-          cout << "Please enter the name of shoe to display: ";
-          get_input(match);
-          table.display_name(match);
-          delete [] match;
+          int count = tree.remove_all();
+          cout << "Number of nodes removed: " << count << endl;
           break;         
         }
 
       // Display type matches.
       case 4: 
         {
-          char * match = new char[SIZE];
-          cout << "Please enter the type of shoe to display: ";
-          get_input(match);
-          table.display_type(match);
-          delete [] match;
           break;
         }
 
       // Remove name matches.
       case 5: 
         {
-          char * match = new char[SIZE];
-          cout << "Please enter the name of shoe to remove from the list (will remove all shoes with matching name: ";
-          get_input(match);
-          int del_items = table.remove_matched_name(match);
-          cout << "# items deleted: " << del_items << endl;
-          delete [] match;
           break;
         }
 
       // Retrieve name matches.
       case 6: 
         {
-          Item items[HASH_SIZE];
-          char * match = new char[SIZE];
-          cout << "Please enter the name of shoes to retrieve: ";
-          get_input(match);
-          int matches = table.retrieve(match, items);
-          cout << "# of matches: " << matches << endl;
-          for (int i = 0; i < matches; i++)
-            (*(items + i)).display();
-          delete [] match;
           break;
         }
 
@@ -122,7 +98,7 @@ void processChoice (int& flag, int menu_choice, Table & table)
           Item item;
           char * key = new char[SIZE];
           make_item(key, item);
-          table.insert(key, item);
+          tree.insert(item);
           delete [] key;
           break;
         }
