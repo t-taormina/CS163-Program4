@@ -77,7 +77,19 @@ int Tree::display_sorted(node * root)
 }
 
 
+// @Dev - wrapper function to display all nodes with a matching name. Calls recursive function
+// Args -> character array to match 
+// Returns -> number of nodes matched
 int Tree::display_name_match(char * name_to_match)
+{
+  return 0;
+}
+
+
+// @Dev - recursive call to display all nodes with a name matching the argument 
+// Args -> character array to match and private member root node 
+// Returns -> number of nodes matched
+int Tree::display_name_match(char * name_to_match, node * root)
 {
   return 0;
 }
@@ -125,11 +137,6 @@ int Tree::remove_all(node * & root)
   return count;
 }
 
-
-int Tree::display_name_match(char * name_to_match, node * root)
-{
-  return 0;
-}
 
 
 int Tree::display_type_match(char * type_to_match, node * root)

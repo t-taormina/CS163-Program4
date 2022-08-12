@@ -31,10 +31,10 @@ int displayMenu() {
     std::cout << "===============================\n";
     std::cout << "1) Read items from file\n";
     std::cout << "2) Display sorted tree\n";
-    std::cout << "3) Remove all nodes\n";
-    std::cout << "4)\n";
-    std::cout << "5)\n";
-    std::cout << "6)\n";
+    std::cout << "3) \n";
+    std::cout << "4) \n";
+    std::cout << "5) \n";
+    std::cout << "6) Remove all nodes\n";
     std::cout << "7) Add a collectable\n";
     std::cout << std::endl;
     std::cout << "0) Exit Program\n";
@@ -58,7 +58,7 @@ void processChoice (int& flag, int menu_choice, Tree & tree)
           break;
         }
 
-      // Display full table. 
+      // Display sorted tree. 
       case 2: 
         {
           int count = tree.display_sorted();
@@ -66,11 +66,9 @@ void processChoice (int& flag, int menu_choice, Tree & tree)
           break;
         }
 
-      // Display name matches.
+      // 
       case 3:
         {
-          int count = tree.remove_all();
-          cout << "Number of nodes removed: " << count << endl;
           break;         
         }
 
@@ -86,9 +84,11 @@ void processChoice (int& flag, int menu_choice, Tree & tree)
           break;
         }
 
-      // Retrieve name matches.
+      // Remove all nodes in the tree.
       case 6: 
         {
+          int count = tree.remove_all();
+          cout << "Number of nodes removed: " << count << endl;
           break;
         }
 
