@@ -108,13 +108,50 @@ int Tree::display_name_match(char * name_to_match, node * root)
 
 int Tree::display_type_match(char * type_to_match)
 {
-  return 0;
+  return display_type_match(type_to_match, root);
 }
 
 
-int Tree::retrieve_match(char * name_to_match, Item & found)
+
+int Tree::display_type_match(char * type_to_match, node * root)
 {
-  return 0;
+  if (!root)
+    return 0;
+  int count = 0;
+  count = display_type_match(type_to_match, root->left);
+  count += display_type_match(type_to_match, root->right);
+  if (root->item.is_type_match(type_to_match))
+  {
+    count++;
+    root->item.display();
+  }
+  return count;
+}
+
+
+int Tree::retrieve_match(char * name_to_match, Item items[100])
+{
+  return retrieve_match(name_to_match, items, root);
+}
+
+
+int Tree::retrieve_match(char * name_to_match, Item items[100], node * root)
+{
+  if (!root)
+    return 0;
+
+  int count = 0;
+  count = retrieve_match(name_to_match, items, root->left);
+  count += retrieve_match(name_to_match, items, root->right);
+  Item found;
+  int check = root->item.retrieve_match(name_to_match, found); 
+  if (check)
+  {
+    cout << "Index = " << count << endl;
+    items[count].copy_item(found);
+    count ++;
+  }
+  return count;
 }
 
 
@@ -148,18 +185,6 @@ int Tree::remove_all(node * & root)
   return count;
 }
 
-
-
-int Tree::display_type_match(char * type_to_match, node * root)
-{
-  return 0;
-}
-
-
-int Tree::retrieve_match(char * name_to_match, Item & found, node * root)
-{
-  return 0;
-}
 
 
 int Tree::remove(char * name_to_remove, node * root)

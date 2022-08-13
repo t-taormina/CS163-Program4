@@ -29,14 +29,14 @@ int displayMenu() {
     std::cout << "==================================================================\n";
 
     std::cout << "===============================\n";
-    std::cout << "1) Read items from file\n";
-    std::cout << "2) Display sorted tree\n";
-    std::cout << "3) Display match by name\n";
-    std::cout << "4) Display match by type\n";
-    std::cout << "5) Retrieve match by name\n";
-    std::cout << "6) Remove by name\n";
-    std::cout << "7) Remove all nodes\n";
-    std::cout << "8) Add a collectable\n";
+    std::cout << "1) Read items from file\n";//UNIMPLEMENTED
+    std::cout << "2) Display sorted tree\n"; //working
+    std::cout << "3) Display match by name\n"; //working
+    std::cout << "4) Display match by type\n";//working
+    std::cout << "5) Retrieve match by name\n";//working
+    std::cout << "6) Remove by name\n";//UNIMPLEMENTED
+    std::cout << "7) Remove all nodes\n";//working
+    std::cout << "8) Add a collectable\n";//working
     std::cout << std::endl;
     std::cout << "0) Exit Program\n";
     std::cout << "Enter: ";
@@ -75,18 +75,36 @@ void processChoice (int& flag, int menu_choice, Tree & tree)
           get_input(name);
           int count = tree.display_name_match(name);
           cout << "Number of matching items: " << count << endl;
+          delete [] name;
           break;         
         }
 
       // Display type matches.
       case 4: 
         {
+          char * type = new char[SIZE];
+          cout << "Please enter a name to match: ";
+          get_input(type);
+          int count = tree.display_type_match(type);
+          cout << "Number of matching type items: " << count << endl;
+          delete [] type;
+
           break;
         }
 
-      // Remove name matches.
+      // Retrieve match by name.
       case 5: 
         {
+          Item items[100];
+          char * name = new char[SIZE];
+          cout << "Please enter a name to retrieve all matches for: ";
+          get_input(name);
+          int count = tree.retrieve_match(name, items);
+          cout << "Number of matching items: " << count << endl;
+          
+          for (int i = 0; i < count; i++)
+            (*(items + i)).display();
+          delete [] name;
           break;
         }
 

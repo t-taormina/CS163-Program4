@@ -119,6 +119,22 @@ int Item::is_match(char * name_to_match)
 
 
 // @DEV
+// Args -> character arrays: name to compare with data members for a match.
+// Returns -> 0 if there is no match
+//            1 if there is a match
+int Item::is_type_match(char * type_to_match)
+{
+  // Default success indicates that the name is not a match. 
+  int success = 0;
+  // Success only changes if we find a match.
+  if (strcmp(type_to_match, type) == 0)
+    success = 1;
+  return success;
+}
+
+
+
+// @DEV
 // Args -> None
 // Returns -> 0 if there are nullptrs stored in data members
 //            1 if function runs successfully
