@@ -37,7 +37,7 @@ int Tree::insert(Item & item, node * & root)
     return 1;
   }
 
-  if (root->item.compare(item))
+  if (root->item.compare(item) >= 0)
   {
     cout << "right node entered" << endl;
     return insert(item, root->right);
@@ -82,7 +82,8 @@ int Tree::display_sorted(node * root)
 // Returns -> number of nodes matched
 int Tree::display_name_match(char * name_to_match)
 {
-  return 0;
+
+  return display_name_match(name_to_match, root);
 }
 
 
@@ -91,7 +92,17 @@ int Tree::display_name_match(char * name_to_match)
 // Returns -> number of nodes matched
 int Tree::display_name_match(char * name_to_match, node * root)
 {
-  return 0;
+  if (!root)
+    return 0;
+  int count = 0;
+  count = display_name_match(name_to_match, root->left);
+  if (root->item.is_match(name_to_match))
+  {
+    count++;
+    root->item.display();
+  }
+  count += display_name_match(name_to_match, root->right);
+  return count;
 }
 
 
