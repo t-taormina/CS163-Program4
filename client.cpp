@@ -31,11 +31,12 @@ int displayMenu() {
     std::cout << "===============================\n";
     std::cout << "1) Read items from file\n";
     std::cout << "2) Display sorted tree\n";
-    std::cout << "3) \n";
-    std::cout << "4) \n";
-    std::cout << "5) \n";
-    std::cout << "6) Remove all nodes\n";
-    std::cout << "7) Add a collectable\n";
+    std::cout << "3) Display match by name\n";
+    std::cout << "4) Display match by type\n";
+    std::cout << "5) Retrieve match by name\n";
+    std::cout << "6) Remove by name\n";
+    std::cout << "7) Remove all nodes\n";
+    std::cout << "8) Add a collectable\n";
     std::cout << std::endl;
     std::cout << "0) Exit Program\n";
     std::cout << "Enter: ";
