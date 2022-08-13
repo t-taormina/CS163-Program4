@@ -36,7 +36,6 @@ int Tree::insert(Item & item, node * & root)
     root->item.copy_item(item);
     return 1;
   }
-
   if (root->item.compare(item) >= 0)
   {
     cout << "right node entered" << endl;
@@ -82,7 +81,6 @@ int Tree::display_sorted(node * root)
 // Returns -> number of nodes matched
 int Tree::display_name_match(char * name_to_match)
 {
-
   return display_name_match(name_to_match, root);
 }
 
@@ -106,13 +104,18 @@ int Tree::display_name_match(char * name_to_match, node * root)
 }
 
 
+// @Dev - wrapper function to recursive function to display all nodes with a type matching the argument 
+// Args -> character array to match 
+// Returns -> number of nodes matched
 int Tree::display_type_match(char * type_to_match)
 {
   return display_type_match(type_to_match, root);
 }
 
 
-
+// @Dev - recursive function to display all nodes with a type matching the argument 
+// Args -> character array to match and private member root node 
+// Returns -> number of nodes matched
 int Tree::display_type_match(char * type_to_match, node * root)
 {
   if (!root)
@@ -129,17 +132,24 @@ int Tree::display_type_match(char * type_to_match, node * root)
 }
 
 
+// @Dev - wrapper function to retrieve all items with a name matching the argument passed
+// Args -> character array with a name to match and an Item array to fill with matches
+// Returns -> number of nodes matched
+// UNFINISHED: don't hard code the size into the array. Use a proper constant
 int Tree::retrieve_match(char * name_to_match, Item items[100])
 {
   return retrieve_match(name_to_match, items, root);
 }
 
 
+// @Dev - recursive function to retrieve all items with a name matching the argument passed
+// Args -> character array with a name to match, Item array to fill with matches, and node
+//         root
+// Returns -> number of nodes matched
 int Tree::retrieve_match(char * name_to_match, Item items[100], node * root)
 {
   if (!root)
     return 0;
-
   int count = 0;
   count = retrieve_match(name_to_match, items, root->left);
   count += retrieve_match(name_to_match, items, root->right);
@@ -156,6 +166,12 @@ int Tree::retrieve_match(char * name_to_match, Item items[100], node * root)
 
 
 int Tree::remove(char * name_to_remove)
+{
+  return 0;
+}
+
+
+int Tree::remove(char * name_to_remove, node * root)
 {
   return 0;
 }
@@ -183,13 +199,6 @@ int Tree::remove_all(node * & root)
   root = nullptr;
   count++;
   return count;
-}
-
-
-
-int Tree::remove(char * name_to_remove, node * root)
-{
-  return 0;
 }
 
 
