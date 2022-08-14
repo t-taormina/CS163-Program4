@@ -28,7 +28,7 @@ int Tree::insert(Item & item)
 // @Dev - recursive call to a node into the tree. 
 // Args -> takes an Item object passed by reference and private member root node as an argument. 
 // Returns -> integer success.
-int Tree::insert(Item & item, node * & root)
+int Tree::insert(Item & item, node *& root)
 {
   if (!root)
   {
@@ -171,7 +171,7 @@ int Tree::remove(char * name_to_remove)
 }
 
 
-int Tree::remove(char * name_to_remove, node * root)
+int Tree::remove(char * name_to_remove, node *& root)
 {
   return 0;
 }
