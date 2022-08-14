@@ -165,15 +165,22 @@ int Tree::retrieve_match(char * name_to_match, Item items[100], node * root)
 }
 
 
+// @Dev - wrapper function to remove all nodes with a name that matches the argument
+// Args -> character array of a name to match  
+// Returns -> number of nodes with matching names removed
 int Tree::remove(char * name_to_remove)
 {
-  return 0;
+  return remove(name_to_remove, root);
 }
 
 
+// @Dev - recursive function to remove all nodes with a name that matches the argument
+// Args -> character array of a name to match and private member root node
+// Returns -> number of nodes with matching names removed
 int Tree::remove(char * name_to_remove, node *& root)
 {
-  return 0;
+  if (!root)
+    return 0;
 }
 
 
