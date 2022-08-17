@@ -70,6 +70,8 @@ class Item
     // 1 for true, 0 for false.
     int is_match(char * name_to_match);
 
+    // Determines if the type passed as an argument matches the calling item. Returns
+    // 1 for true, 0 for false.
     int is_type_match(char * type_to_match);
 
     int compare(Item & arg_item);

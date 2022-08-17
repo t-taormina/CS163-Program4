@@ -34,7 +34,7 @@ int displayMenu() {
     std::cout << "3) Display match by name\n"; //working
     std::cout << "4) Display match by type\n";//working
     std::cout << "5) Retrieve match by name\n";//working
-    std::cout << "6) Remove by name\n";//UNIMPLEMENTED
+    std::cout << "6) Remove by name\n";//working
     std::cout << "7) Remove all nodes\n";//working
     std::cout << "8) Add a collectable\n";//working
     std::cout << std::endl;
@@ -111,7 +111,13 @@ void processChoice (int& flag, int menu_choice, Tree & tree)
       // Remove all nodes in the tree.
       case 6: 
         {
-         break;
+          Item items[100];
+          char * name = new char[SIZE];
+          cout << "Please enter a name to remove all matches for: ";
+          get_input(name);
+          int count = tree.remove(name);
+          cout << "Number of items removed: " << count << endl;
+          break;
         }
 
       case 7:

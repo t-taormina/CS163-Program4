@@ -170,6 +170,11 @@ int Tree::retrieve_match(char * name_to_match, Item items[100], node * root)
 // Returns -> number of nodes with matching names removed
 int Tree::remove(char * name_to_remove)
 {
+  if (!root)
+  {
+    cout << "empty tree" << endl;
+    return 0;
+  }
   return remove(name_to_remove, root);
 }
 
@@ -177,10 +182,58 @@ int Tree::remove(char * name_to_remove)
 // @Dev - recursive function to remove all nodes with a name that matches the argument
 // Args -> character array of a name to match and private member root node
 // Returns -> number of nodes with matching names removed
-int Tree::remove(char * name_to_remove, node *& root)
+int Tree::remove(char* name_to_remove, node*& root)
 {
   if (!root)
     return 0;
+  int count = 0;
+  count = remove(name_to_remove, root->left);
+  count += remove(name_to_remove, root->right);
+  if (root->item.is_match(name_to_remove))
+  {
+    //no children
+    if (!root->left  && !root->right){ 
+      cout << "find node - no children" << endl;
+      delete root;
+      root = nullptr;
+      count++;
+    }
+    //one child left
+    else if (root->left && !root->right) {
+      cout << "find node - left child" << endl;
+      node * temp = root->left;
+      delete root;
+      root = temp;
+      count++;
+    }
+    //one child right
+    else if (!root->left && root->right) {
+      cout << "find node - right child" << endl;
+      node * temp = root->right;
+      delete root;
+      root = temp;
+      count++;
+    }
+    //two children (find in order successor)
+    else {
+      cout << "find node - two children" << endl;
+      node* current = root->right;
+      node* parent;
+      while (current->left)
+      {
+        parent = current;
+        current = current->left;
+      }
+      root->item.copy_item(current->item);
+      node * hold = current->right;
+      parent = hold;
+      delete current;
+      current = nullptr;
+      count++;
+    }
+  }
+  return count;
+
 }
 
 
