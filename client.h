@@ -7,6 +7,9 @@
 
 // ===============================================================================================
 // CLIENT FUNCTIONALITY TO TEST THE ADT AND DATA STRUCTURE
+// This Header file contains the prototypes for the code designed to test the Data structures and abstract data
+// type. It consists of a run function for entry into the program and a menu interface
+// that allows the user to test all methods implemented by the ADT. 
 
 int run();
 int displayMenu();
