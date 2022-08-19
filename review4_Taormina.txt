@@ -1,0 +1,35 @@
+Efficiency Review Write-up
+Tyler Taormina
+Program 4
+August 19th, 2022
+==============================================
+
+  The goal of this project was to replicate Program number 3, but instead of using a table
+data structure to store our information it was decided to use a binary search tree. This
+tree was implemented using a Tree class that contains a private member "root" of type
+node. The node structs used to make up the tree consist of a data field for an Item object 
+and two nodes. These internal nodes represenst the left and right children for each node. 
+The item class was reused from program 3 and received little to no changes. To recap, the
+item class contains information intended to represent a collectable object.  
+
+  While the table data structure from program 3 was designed to be efficient for look up
+times, it did have certain limitations. For instance, displaying items in any traditional
+sorted fashion (alphabetical, numerical, etc) was not possible. Depending on the design
+and use cases of the application, this may or may not be acceptable. For program 4,
+sorting is necessary and a new data structure is required. The binary search tree is
+a good choice for this given problem. In most cases, this data structure performed 
+extremely well. One of the cases that defeats the benefits of a binary search tree is when
+data is inserted in an already sorted fashion. This would result in a worst case scenario 
+in which the tree would have the height of the number of items inserted. In this situation,
+a tree that allows for proper insertion of sorted data would be better suited. During 
+testing this situation was audited and resulted in no major errors, but performance does 
+decrease and is equivalent to that of a standard linear linked list. 
+
+  In the worst case scenario there are other tree structures that would perform better.
+These types of trees have been covered in lecture but not to the point where I would be
+confident in implementing them. These trees include 2-3-4 trees, Red-Black trees, and AVL
+trees to name a few. All of these trees function differently but aim to achieve the same
+thing, that being a balanced tree at all times despite the order in which data is
+inserted. To my understanding this would improve on the binary search tree at the expense
+of potentially more operations when adding and removing nodes from the tree.     
+
