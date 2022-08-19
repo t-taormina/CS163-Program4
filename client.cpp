@@ -29,14 +29,13 @@ int displayMenu() {
     std::cout << "==================================================================\n";
 
     std::cout << "===============================\n";
-    std::cout << "1) Read items from file\n";//UNIMPLEMENTED
-    std::cout << "2) Display sorted tree\n"; //working
-    std::cout << "3) Display match by name\n"; //working
-    std::cout << "4) Display match by type\n";//working
-    std::cout << "5) Retrieve match by name\n";//working
-    std::cout << "6) Remove by name\n";//working
-    std::cout << "7) Remove all nodes\n";//working
-    std::cout << "8) Add a collectable\n";//working
+    std::cout << "1) Display sorted tree\n"; //working
+    std::cout << "2) Display match by name\n"; //working
+    std::cout << "3) Display match by type\n";//working
+    std::cout << "4) Retrieve match by name\n";//working
+    std::cout << "5) Remove by name\n";//working
+    std::cout << "6) Remove all nodes\n";//working
+    std::cout << "7) Add a collectable\n";//working
     std::cout << std::endl;
     std::cout << "0) Exit Program\n";
     std::cout << "Enter: ";
@@ -52,15 +51,8 @@ void processChoice (int& flag, int menu_choice, Tree & tree)
   int proceed = 1;
   switch(menu_choice)
     {
-      // Read file into events and output.
-      case 1:
-        { 
-          //table.read_file();
-          break;
-        }
-
       // Display sorted tree. 
-      case 2: 
+      case 1: 
         {
           int count = tree.display_sorted();
           cout << "Number of nodes in list: " << count << endl;
@@ -68,7 +60,7 @@ void processChoice (int& flag, int menu_choice, Tree & tree)
         }
 
       // Display match by name
-      case 3:
+      case 2:
         {
           char * name = new char[SIZE];
           cout << "Please enter a name to match: ";
@@ -80,7 +72,7 @@ void processChoice (int& flag, int menu_choice, Tree & tree)
         }
 
       // Display type matches.
-      case 4: 
+      case 3: 
         {
           char * type = new char[SIZE];
           cout << "Please enter a name to match: ";
@@ -93,7 +85,7 @@ void processChoice (int& flag, int menu_choice, Tree & tree)
         }
 
       // Retrieve match by name.
-      case 5: 
+      case 4: 
         {
           Item items[100];
           char * name = new char[SIZE];
@@ -109,7 +101,7 @@ void processChoice (int& flag, int menu_choice, Tree & tree)
         }
 
       // Remove all nodes in the tree.
-      case 6: 
+      case 5: 
         {
           Item items[100];
           char * name = new char[SIZE];
@@ -120,7 +112,7 @@ void processChoice (int& flag, int menu_choice, Tree & tree)
           break;
         }
 
-      case 7:
+      case 6:
         { 
           int count = tree.remove_all();
           cout << "Number of nodes removed: " << count << endl;
@@ -128,7 +120,7 @@ void processChoice (int& flag, int menu_choice, Tree & tree)
         }
 
       // Add an item to the table.
-      case 8:
+      case 7:
         {
           Item item;
           char * key = new char[SIZE];
@@ -168,7 +160,7 @@ int validate_menu_choice()
   cin >> menu_choice_int;
   std::cin.ignore(SIZE, '\n');
  
-  while (menu_choice_int > 8 || menu_choice_int < 0) {
+  while (menu_choice_int > 7 || menu_choice_int < 0) {
     cout << "Please select a valid menu item." << endl;
     cin >> menu_choice_int;
   }

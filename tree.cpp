@@ -218,22 +218,32 @@ int Tree::remove(char* name_to_remove, node*& root)
     else {
       cout << "find node - two children" << endl;
       node* current = root->right;
-      node* parent;
-      while (current->left)
+      if (!current->left)
       {
-        parent = current;
-        current = current->left;
+        root->item.copy_item(current->item);
+        node* hold = current->right;
+        delete current;
+        current = nullptr;
+        root->right = hold;
+        count++;
+      } else 
+      {
+        node* parent = current;
+        while (current->left)
+        {
+          parent = current;
+          current = current->left;
+        }
+        root->item.copy_item(current->item);
+        node * hold = current->right;
+        parent->left = hold;
+        delete current;
+        current = nullptr;
+        count++;
       }
-      root->item.copy_item(current->item);
-      node * hold = current->right;
-      parent = hold;
-      delete current;
-      current = nullptr;
-      count++;
     }
   }
   return count;
-
 }
 
 

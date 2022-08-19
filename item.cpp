@@ -220,6 +220,10 @@ int Item::retrieve(Item& found_item)
 }
 
 
+// @DEV
+// Args -> Item: Item to compare names with 
+// Returns -> strcmp value with can be either a positive or negative number. 
+//            0 if there is a match
 int Item::compare(Item & arg_item)
 {
   return strcmp(arg_item.name, name);
